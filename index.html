@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anghell.ink — Alina Anghel · Fine-Art Tattoo</title>
+  <meta name="description" content="Anghell.ink — the private gallery of Alina Anghel, fine-art tattoo artist. Fine line, blackwork, botanical and ornamental work. Request a session." />
+  <meta name="theme-color" content="#F2EEE4" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Anghell.ink — Alina Anghel · Fine-Art Tattoo" />
+  <meta property="og:description" content="A private gallery for a single hand. Fine-art tattoo by Alina Anghel." />
+  <meta property="og:image" content="assets/img/hero.jpg" />
+
+  <!-- Favicon: the monogram seal -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230B0B0C'/%3E%3Cg fill='none' stroke='%23F4F1EA' stroke-width='3'%3E%3Ccircle cx='50' cy='26' r='9'/%3E%3Cpath d='M30 74 L50 36 L70 74 M37 60 L63 60'/%3E%3C/g%3E%3C/svg%3E" />
+
+  <!-- Apply saved theme + language before paint (default: light / Romanian) -->
+  <script>(function(){try{var t=localStorage.getItem('anghell-theme');if(t!=='dark'){document.documentElement.setAttribute('data-theme','light');}var l=localStorage.getItem('anghell-lang');document.documentElement.lang=(l==='en')?'en':'ro';}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
+
+  <!-- Fonts: Fraunces (high-contrast display serif w/ italics) + Inter (grotesque body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- Film grain over everything -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Custom reticle cursor (desktop, pointer-fine only) -->
+  <div class="reticle" aria-hidden="true">
+    <span class="reticle__ring"></span>
+    <span class="reticle__dot"></span>
+    <span class="reticle__label" data-i18n="cursor.look">look closer</span>
+  </div>
+
+  <!-- ───────────────────────── NAV ───────────────────────── -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__mark" aria-label="Anghell.ink — home">
+      <span class="wordmark wordmark--sm">
+        <span class="wordmark__name">Anghe<span class="wordmark__ll">ll</span></span><span class="wordmark__ink">.ink</span>
+      </span>
+    </a>
+    <div class="nav__right">
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#work" data-i18n="nav.work">Work</a>
+        <a href="#studio" data-i18n="nav.studio">Studio</a>
+        <a href="#request" class="nav__cta" data-i18n="nav.request">Request a Session</a>
+      </nav>
+      <button class="nav__lang" id="langToggle" aria-label="Switch language">
+        <span data-lang-opt="en">EN</span><span class="sep" aria-hidden="true">/</span><span data-lang-opt="ro">RO</span>
+      </button>
+      <button class="theme-switch" id="themeToggle" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+        <span class="theme-switch__knob" aria-hidden="true"></span>
+      </button>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <main id="top">
+    <section class="hero" id="hero">
+      <div class="hero__media" data-img="hero">
+        <div class="hero__veil" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero__inner">
+        <p class="eyebrow reveal" data-delay="0" data-i18n="hero.eyebrow">Fine-art tattoo · Romania</p>
+
+        <h1 class="hero__wordmark reveal" data-delay="1">
+          <span class="wordmark wordmark--xl">
+            <span class="wordmark__name">Anghe<span class="wordmark__ll">ll</span></span><span class="wordmark__ink">.ink</span>
+          </span>
+        </h1>
+
+        <p class="hero__line reveal" data-delay="2" data-i18n="hero.line">
+          A private gallery for a single hand — <em>austere, luminous, quietly gothic.</em>
+          To be marked here is not booked. It is <em>granted</em>.
+        </p>
+
+        <div class="hero__actions reveal" data-delay="3">
+          <a href="#work" class="btn">
+            <span class="btn__label" data-i18n="hero.enter">Enter the gallery</span>
+            <span class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a href="#request" class="btn btn--accent">
+            <span class="btn__label" data-i18n="hero.request">Request a session</span>
+            <span class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+
+      <a href="#work" class="hero__scroll" aria-label="Scroll to work">
+        <span data-i18n="hero.scroll">scroll</span>
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- ───────────────────────── WORK / PORTFOLIO ───────────────────────── -->
+    <section class="work" id="work">
+      <div class="section-head">
+        <p class="eyebrow reveal" data-i18n="work.eyebrow">01 — Portfolio</p>
+        <h2 class="section-title reveal" data-i18n="work.title">
+          The work, <span class="ital">one piece at a time.</span>
+        </h2>
+        <p class="section-sub reveal" data-i18n="work.sub">
+          Organised by hand, not by volume. One strong image outlasts six adequate ones.
+        </p>
+      </div>
+
+      <div class="filters reveal" role="tablist" aria-label="Filter work by style">
+        <button class="filter is-active" data-filter="all" role="tab" aria-selected="true" data-i18n="filter.all">All</button>
+        <button class="filter" data-filter="fineline" role="tab" aria-selected="false" data-i18n="filter.fineline">Fine Line</button>
+        <button class="filter" data-filter="blackwork" role="tab" aria-selected="false" data-i18n="filter.blackwork">Blackwork</button>
+        <button class="filter" data-filter="botanical" role="tab" aria-selected="false" data-i18n="filter.botanical">Botanical</button>
+        <button class="filter" data-filter="lettering" role="tab" aria-selected="false" data-i18n="filter.lettering">Lettering</button>
+        <button class="filter" data-filter="ornamental" role="tab" aria-selected="false" data-i18n="filter.ornamental">Ornamental</button>
+      </div>
+
+      <div class="gallery" id="gallery">
+        <!-- pieces injected by JS -->
+      </div>
+    </section>
+
+    <!-- ───────────────────────── STATEMENT / ABOUT ───────────────────────── -->
+    <section class="statement" id="studio">
+      <div class="statement__grid">
+        <figure class="statement__portrait reveal" data-img="portrait">
+          <figcaption data-i18n="statement.cap">Alina Anghel — studio, Bucharest</figcaption>
+        </figure>
+
+        <div class="statement__text">
+          <p class="eyebrow reveal" data-i18n="statement.eyebrow">02 — Statement</p>
+          <blockquote class="statement__quote reveal" data-i18n="statement.quote">
+            <p>I work in <em>black ink and restraint.</em> A line is a decision you keep for life — so I make few of them, and I make them slowly.</p>
+          </blockquote>
+          <div class="statement__body reveal" data-i18n="statement.body">
+            <p>
+              I am drawn to the place where the devotional meets the anatomical — feathers, thorns,
+              ornament, the quiet geometry of the body. My background is in drawing, and I treat skin
+              the way I'd treat fine paper: as something that deserves a held breath before the first mark.
+            </p>
+            <p>
+              I take on a small number of pieces. Each begins as a conversation and a drawing made for
+              you alone — never a flash repeated. If we work together, you'll leave with something that
+              feels less like a tattoo and more like a small, permanent piece of art.
+            </p>
+          </div>
+          <a href="#request" class="link-underline reveal" data-i18n="statement.link">Request to work together</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── FLASH / DROPS ───────────────────────── -->
+    <section class="drops" id="drops">
+      <div class="section-head section-head--center">
+        <p class="eyebrow reveal" data-i18n="drops.eyebrow">03 — Flash</p>
+        <h2 class="section-title reveal" data-i18n="drops.title">Limited <span class="ital">drops.</span></h2>
+        <p class="section-sub reveal" data-i18n="drops.sub">
+          A handful of available designs, released in small editions. Each is tattooed once, then retired.
+        </p>
+      </div>
+
+      <div class="drops__row">
+        <article class="drop reveal" data-img="drop-1">
+          <div class="drop__media"></div>
+          <div class="drop__meta">
+            <h3>Seraph I</h3>
+            <p data-i18n="drop1.meta">Fine line · forearm</p>
+            <span class="drop__status" data-i18n="drop.available">Available · 1 of 1</span>
+          </div>
+        </article>
+        <article class="drop reveal" data-delay="1" data-img="drop-2">
+          <div class="drop__media"></div>
+          <div class="drop__meta">
+            <h3>Thorned Halo</h3>
+            <p data-i18n="drop2.meta">Blackwork · sternum</p>
+            <span class="drop__status" data-i18n="drop.available">Available · 1 of 1</span>
+          </div>
+        </article>
+        <article class="drop reveal" data-delay="2" data-img="drop-3">
+          <div class="drop__media"></div>
+          <div class="drop__meta">
+            <h3>Fallen Feather</h3>
+            <p data-i18n="drop3.meta">Ornamental · spine</p>
+            <span class="drop__status drop__status--gone" data-i18n="drop.claimed">Claimed</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── REQUEST A SESSION ───────────────────────── -->
+    <section class="request" id="request">
+      <div class="request__grid">
+        <div class="request__intro">
+          <p class="eyebrow reveal" data-i18n="request.eyebrow">04 — Access</p>
+          <h2 class="section-title reveal" data-i18n="request.title">Request a <span class="ital">session.</span></h2>
+          <div class="request__copy reveal" data-i18n="request.copy">
+            <p>
+              I open a small number of slots each season. Tell me what you have in mind — the idea,
+              where it lives on the body, roughly how large — and any references that hold the feeling.
+            </p>
+            <p>
+              Every request is read personally. If your idea and my hand are a match, you'll hear back
+              with next steps and a rough waitlist window. There is no rush here, on either side.
+            </p>
+          </div>
+          <ul class="request__notes reveal">
+            <li><span data-i18n="request.n1k">Studio</span> <span data-i18n="request.n1v">Bucharest · by appointment</span></li>
+            <li><span data-i18n="request.n2k">Takes on</span> <span data-i18n="request.n2v">Fine line · blackwork · botanical · ornamental</span></li>
+            <li><span data-i18n="request.n3k">Waitlist</span> <span data-i18n="request.n3v">typically 6–10 weeks</span></li>
+          </ul>
+        </div>
+
+        <form class="request__form reveal" id="requestForm" novalidate>
+          <div class="field">
+            <label for="f-name" data-i18n="form.name">Your name</label>
+            <input type="text" id="f-name" name="name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="f-email" data-i18n="form.email">Email</label>
+            <input type="email" id="f-email" name="email" autocomplete="email" required />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-placement" data-i18n="form.placement">Placement</label>
+              <input type="text" id="f-placement" name="placement" data-i18n-ph="form.placement.ph" placeholder="e.g. forearm" />
+            </div>
+            <div class="field">
+              <label for="f-size" data-i18n="form.size">Approx. size</label>
+              <input type="text" id="f-size" name="size" data-i18n-ph="form.size.ph" placeholder="e.g. 12 cm" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-idea" data-i18n="form.idea">The idea</label>
+            <textarea id="f-idea" name="idea" rows="4" data-i18n-ph="form.idea.ph" placeholder="What do you have in mind, and what should it feel like?" required></textarea>
+          </div>
+          <div class="field">
+            <label for="f-dates" data-i18n="form.dates">Preferred dates <span class="field__opt">(optional)</span></label>
+            <input type="text" id="f-dates" name="dates" data-i18n-ph="form.dates.ph" placeholder="Any timing that suits you" />
+          </div>
+
+          <button type="submit" class="btn btn--accent" id="submitBtn">
+            <span class="btn__label" data-i18n="form.submit">Send request</span>
+            <span class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+          </button>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ───────────────────────── FOOTER ───────────────────────── -->
+  <footer class="footer" id="footer">
+    <div class="footer__seal" aria-hidden="true">
+      <svg viewBox="0 0 100 100" width="64" height="64">
+        <g fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="50" cy="27" r="9" />
+          <path d="M30 74 L50 36 L70 74 M37 60 L63 60" />
+          <circle cx="50" cy="50" r="46" stroke-dasharray="2 5" opacity="0.5" />
+        </g>
+      </svg>
+    </div>
+    <div class="footer__links">
+      <a href="https://instagram.com/anghell.tattoo" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hello@anghell.ink">hello@anghell.ink</a>
+      <span data-i18n="footer.city">Bucharest, RO</span>
+    </div>
+    <p class="footer__fine">
+      <span class="wordmark wordmark--sm">
+        <span class="wordmark__name">Anghe<span class="wordmark__ll">ll</span></span><span class="wordmark__ink">.ink</span>
+      </span>
+      <span class="footer__copy">© <span id="year"></span> Alina Anghel · <span data-i18n="footer.copy">All work original.</span></span>
+    </p>
+  </footer>
+
+  <!-- ───────────────────────── LIGHTBOX ───────────────────────── -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Artwork detail">
+    <button class="lightbox__close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+    <figure class="lightbox__figure">
+      <div class="lightbox__media" id="lbMedia"></div>
+      <figcaption class="lightbox__cap" id="lbCap"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Next">&#8250;</button>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
