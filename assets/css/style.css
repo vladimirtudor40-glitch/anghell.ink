@@ -34,7 +34,11 @@
   --z-lightbox: 80;
 
   --page-bg: #0B0B0C;   /* theme-aware page colour (not overridden inside hero) */
-  --nav-bg:  rgba(11, 11, 12, 0.72);
+  /* nav = inverted band → on DARK theme the bar is LIGHT */
+  --nav-bar-bg: #F4F1EA;
+  --nav-fg:     #0B0B0C;
+  --nav-fg-dim: rgba(11, 11, 12, 0.62);
+  --nav-line:   rgba(11, 11, 12, 0.18);
 }
 
 /* — Light mode: ivory-dominant "Ink & Light" gallery feel — */
@@ -48,7 +52,11 @@
   --hairline:   rgba(21, 18, 14, 0.16);
   --hairline-soft: rgba(21, 18, 14, 0.08);
   --page-bg:    #F2EEE4;
-  --nav-bg:     rgba(242, 238, 228, 0.82);
+  /* nav = inverted band → on LIGHT theme the bar is DARK */
+  --nav-bar-bg: #0B0B0C;
+  --nav-fg:     #F4F1EA;
+  --nav-fg-dim: rgba(244, 241, 234, 0.70);
+  --nav-line:   rgba(244, 241, 234, 0.18);
 }
 
 /* ───────── Reset ───────── */
@@ -110,8 +118,8 @@ button { font-family: inherit; cursor: pointer; }
   place-items: center;
   width: 26px; height: 26px;
 }
-/* …but the hero is always dark, so force a light reticle while over it */
-body.reticle-on-hero .reticle { --reticle-fg: #F4F1EA; }
+/* over the inverted nav band, flip the reticle to the band's foreground */
+body.reticle-on-nav .reticle { --reticle-fg: var(--nav-fg); }
 .reticle__ring {
   position: absolute; inset: 0;
   border: 1px solid var(--reticle-fg);
@@ -263,10 +271,7 @@ em { font-style: italic; }
 
 /* ───────── Nav ───────── */
 .nav {
-  /* over the dark hero at top → light foreground; switches to theme on scroll */
-  --nav-fg: #F4F1EA;
-  --nav-fg-dim: rgba(244, 241, 234, 0.7);
-  --nav-line: rgba(244, 241, 234, 0.18);
+  /* contrasting band: dark bar on light theme, light bar on dark theme */
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: var(--z-nav);
@@ -274,19 +279,14 @@ em { font-style: italic; }
   align-items: center;
   justify-content: space-between;
   padding: 1.4rem var(--pad);
+  background: var(--nav-bar-bg);
   color: var(--nav-fg);
-  transition: background 0.5s var(--ease), padding 0.5s var(--ease), border-color 0.5s var(--ease), color 0.5s var(--ease);
+  transition: padding 0.5s var(--ease), border-color 0.5s var(--ease);
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
-  --nav-fg: var(--bone);
-  --nav-fg-dim: var(--ash);
-  --nav-line: var(--hairline);
-  background: var(--nav-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   padding-block: 1rem;
-  border-bottom-color: var(--hairline-soft);
+  border-bottom-color: var(--nav-line);
 }
 .nav .wordmark__ink { color: var(--nav-fg-dim); }
 .nav__links {
@@ -355,13 +355,6 @@ em { font-style: italic; }
 
 /* ───────── Hero ───────── */
 .hero {
-  /* hero is always the dark "museum wall" — tokens fixed regardless of theme */
-  --ink:   #0B0B0C;
-  --ink-2: #121214;
-  --bone:  #F4F1EA;
-  --ash:   #8A8782;
-  --ash-dim: #5E5C58;
-  --hairline: rgba(244, 241, 234, 0.12);
   position: relative;
   min-height: 100svh;
   display: flex;
@@ -369,18 +362,11 @@ em { font-style: italic; }
   justify-content: center;
   padding: 8rem var(--pad) 5rem;
   overflow: hidden;
+  background: var(--ink);   /* solid: black on dark theme, ivory on light theme */
 }
-.hero__media {
-  position: absolute; inset: 0;
-  background: #121214 center/cover no-repeat;
-  z-index: -2;
-}
-.hero__veil {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(120% 90% at 70% 30%, transparent 0%, rgba(11,11,12,0.5) 60%, rgba(11,11,12,0.82) 100%),
-    linear-gradient(180deg, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.12) 34%, rgba(11,11,12,0.42) 72%, var(--page-bg) 100%);
-}
+/* solid-colour hero — no background image */
+.hero__media,
+.hero__veil { display: none; }
 .hero__inner { max-width: var(--maxw); width: 100%; margin: 0 auto; }
 .hero__wordmark { margin: 1.6rem 0 0; }
 .hero__line {
@@ -633,14 +619,14 @@ em { font-style: italic; }
   .nav.is-open .nav__links {
     display: flex; flex-direction: column; gap: 1.6rem;
     position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--page-bg); backdrop-filter: blur(16px);
-    padding: 2rem var(--pad); border-bottom: 1px solid var(--hairline);
+    background: var(--nav-bar-bg);
+    padding: 2rem var(--pad); border-bottom: 1px solid var(--nav-line);
   }
-  /* inside the dropdown panel use theme colours (panel sits over the page, not the hero) */
-  .nav.is-open .nav__links a { color: var(--ash); }
-  .nav.is-open .nav__links a:hover { color: var(--bone); }
-  .nav.is-open .nav__links a:not(.nav__cta)::after { background: var(--bone); }
-  .nav.is-open .nav__cta { color: var(--bone) !important; border-color: var(--hairline); align-self: flex-start; }
+  /* dropdown panel matches the inverted nav band */
+  .nav.is-open .nav__links a { color: var(--nav-fg-dim); }
+  .nav.is-open .nav__links a:hover { color: var(--nav-fg); }
+  .nav.is-open .nav__links a:not(.nav__cta)::after { background: var(--nav-fg); }
+  .nav.is-open .nav__cta { color: var(--nav-fg) !important; border-color: var(--nav-line); align-self: flex-start; }
   .statement__grid, .request__grid { grid-template-columns: 1fr; }
   .statement__portrait { aspect-ratio: 3/4; max-width: 420px; }
   .drops__row { grid-template-columns: 1fr; max-width: 420px; }

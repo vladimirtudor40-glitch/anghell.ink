@@ -297,12 +297,9 @@
       el.addEventListener("mouseenter", function () { reticle.classList.add("is-hover"); });
       el.addEventListener("mouseleave", function () { reticle.classList.remove("is-hover"); });
     });
-    // hero is always dark → keep the reticle light while over it (matters in light theme)
-    var heroSection = document.getElementById("hero");
-    if (heroSection) {
-      heroSection.addEventListener("mouseenter", function () { document.body.classList.add("reticle-on-hero"); });
-      heroSection.addEventListener("mouseleave", function () { document.body.classList.remove("reticle-on-hero"); });
-    }
+    // the nav is an inverted band → flip the reticle colour while over it
+    nav.addEventListener("mouseenter", function () { document.body.classList.add("reticle-on-nav"); });
+    nav.addEventListener("mouseleave", function () { document.body.classList.remove("reticle-on-nav"); });
   }
 
   /* ---------- Dark / light theme (default: light) ---------- */
