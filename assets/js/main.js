@@ -259,6 +259,45 @@
   }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
   document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
 
+  /* ---------- Hero wordmark: red self-drawing contour ---------- */
+  var heroMark = document.getElementById("heroMark");
+  if (heroMark) {
+    var strokeText = heroMark.querySelector(".hero__mark-stroke");
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function setupDash() {
+      var len = 0;
+      try { len = strokeText.getComputedTextLength(); } catch (e) {}
+      if (!len) len = 900;
+      // dash must cover the glyph-outline perimeter (~3x the advance width) in one pass
+      var D = Math.round(len * 3);
+      heroMark.style.setProperty("--dash", D);
+    }
+    function playMark() {
+      if (reduceMotion) return;
+      heroMark.classList.remove("is-drawn");
+      void heroMark.getBoundingClientRect(); // reflow → restart the animation
+      heroMark.classList.add("is-drawn");
+    }
+    function initMark() {
+      setupDash();
+      var heroEl = document.getElementById("hero");
+      if (heroEl && "IntersectionObserver" in window) {
+        // play on load (hero visible) + every time the hero scrolls back into view
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { if (en.isIntersecting) playMark(); });
+        }, { threshold: 0.55 }).observe(heroEl);
+      } else {
+        playMark();
+      }
+      var rz;
+      window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(setupDash, 200); });
+    }
+    // measure only once the display font is ready (else length is wrong)
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(initMark);
+    else window.addEventListener("load", initMark);
+  }
+
   /* ---------- Nav: scrolled state + mobile toggle ---------- */
   var nav = document.getElementById("nav");
   var onScroll = function () { nav.classList.toggle("is-scrolled", window.scrollY > 40); };

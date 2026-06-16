@@ -369,6 +369,53 @@ em { font-style: italic; }
 .hero__veil { display: none; }
 .hero__inner { max-width: var(--maxw); width: 100%; margin: 0 auto; }
 .hero__wordmark { margin: 1.6rem 0 0; }
+
+/* ── SVG wordmark with red self-drawing contour ── */
+.hero__mark {
+  display: block;
+  width: min(100%, 760px);   /* 100% of the padded hero column → no overflow on mobile */
+  height: auto;
+  overflow: visible;
+}
+.hero__mark-text {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 200px;
+  letter-spacing: -2px;
+}
+.hm-ll  { font-style: italic; font-weight: 300; }
+.hm-ink { font-family: var(--body); font-weight: 400; font-size: 58px; letter-spacing: 3px; }
+
+.hero__mark-fill   { fill: var(--bone); opacity: 1; }   /* main wordmark — always visible, exact size */
+/* red contour sits a few px OUTSIDE the letters: thick red, then a bg-coloured
+   knockout carves the gap, then the exact-size fill covers the interior.
+   half-width red = gap + line ; half-width knockout = gap  →  red ring of `line` at `gap` px out */
+.hero__mark-stroke {
+  fill: none;
+  stroke: var(--oxblood);
+  stroke-width: 11;                 /* 2*(gap 3.5 + line 2) */
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: var(--dash, 4000);
+  stroke-dashoffset: var(--dash, 4000);
+}
+.hero__mark-gap {
+  fill: none;
+  stroke: var(--ink);               /* matches hero bg → reads as empty gap */
+  stroke-width: 7;                  /* 2*gap → 3.5px gap between letter and contour */
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+/* the red contour paints on slowly + evenly along the exact letters (replayed by JS) */
+.hero__mark.is-drawn .hero__mark-stroke { animation: markDraw 8s linear forwards; }
+@keyframes markDraw { from { stroke-dashoffset: var(--dash, 4000); } to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__mark-fill { opacity: 1; }
+  .hero__mark-stroke { stroke-dashoffset: 0; }
+  .hero__mark.is-drawn .hero__mark-stroke,
+  .hero__mark.is-drawn .hero__mark-fill { animation: none; }
+}
 .hero__line {
   font-family: var(--display);
   font-weight: 300;
@@ -634,8 +681,8 @@ em { font-style: italic; }
 }
 @media (max-width: 480px) {
   .field-row { grid-template-columns: 1fr; }
-  .hero__actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .btn--ghost, .btn--solid { width: 100%; }
+  .hero__actions { flex-direction: column; align-items: stretch; gap: 1rem; }
+  .hero__actions .btn { width: 100%; }
 }
 
 /* ───────── Reduced motion ───────── */

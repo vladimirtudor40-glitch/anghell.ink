@@ -72,10 +72,21 @@
       <div class="hero__inner">
         <p class="eyebrow reveal" data-delay="0" data-i18n="hero.eyebrow">Fine-art tattoo · Romania</p>
 
-        <h1 class="hero__wordmark reveal" data-delay="1">
-          <span class="wordmark wordmark--xl">
-            <span class="wordmark__name">Anghe<span class="wordmark__ll">ll</span></span><span class="wordmark__ink">.ink</span>
-          </span>
+        <h1 class="hero__wordmark" aria-label="Anghell.ink">
+          <svg id="heroMark" class="hero__mark" viewBox="0 0 712 284" preserveAspectRatio="xMinYMid meet" role="img" aria-label="Anghell.ink">
+            <!-- red contour (thick), traced along the exact letterforms -->
+            <text class="hero__mark-text hero__mark-stroke" x="2" y="214">
+              <tspan class="hm-name">Anghe</tspan><tspan class="hm-ll">ll</tspan><tspan class="hm-ink" dx="14" dy="-92">.ink</tspan>
+            </text>
+            <!-- knockout in the bg colour → opens a small gap between letters and contour -->
+            <text class="hero__mark-text hero__mark-gap" x="2" y="214">
+              <tspan class="hm-name">Anghe</tspan><tspan class="hm-ll">ll</tspan><tspan class="hm-ink" dx="14" dy="-92">.ink</tspan>
+            </text>
+            <!-- fill layer on top (the always-visible wordmark, exact size) -->
+            <text class="hero__mark-text hero__mark-fill" x="2" y="214">
+              <tspan class="hm-name">Anghe</tspan><tspan class="hm-ll">ll</tspan><tspan class="hm-ink" dx="14" dy="-92">.ink</tspan>
+            </text>
+          </svg>
         </h1>
 
         <p class="hero__line reveal" data-delay="2" data-i18n="hero.line">
